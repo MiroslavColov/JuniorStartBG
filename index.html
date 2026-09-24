@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="JuniorStart BG — стажове, junior позиции и студентски практики в България." />
+  <meta name="theme-color" content="#0f172a" />
+  <title>JuniorStart BG — Стажове и първа работа</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="JuniorStart BG">
+        <span class="brand-mark">J</span>
+        <span>
+          <strong>JuniorStart</strong>
+          <small>BG</small>
+        </span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Отвори меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <button class="nav-link active" data-view="home">Начало</button>
+        <button class="nav-link" data-view="jobs">Обяви</button>
+        <button class="nav-link" data-view="companies">Компании</button>
+        <button class="nav-link" data-view="saved">Запазени <span id="savedCountBadge" class="badge">0</span></button>
+      </nav>
+
+      <button class="btn btn-primary desktop-cta" id="openAddJobTop">Добави обява</button>
+    </header>
+
+    <div class="system-notice hidden" id="configNotice"></div>
+
+    <main>
+      <section class="view active" id="view-home">
+        <section class="hero" id="home">
+          <div class="hero-copy">
+            <div class="eyebrow">Само за начинаещи</div>
+            <h1>Намери стаж или първа работа <span>без да ровиш из senior обяви.</span></h1>
+            <p>
+              JuniorStart BG събира на едно място стажове, junior позиции и студентски практики в България.
+              По-малко шум. Повече реални възможности.
+            </p>
+
+            <div class="hero-search">
+              <div class="input-wrap">
+                <label for="heroSearch">Какво търсиш?</label>
+                <input id="heroSearch" type="search" placeholder="Напр. frontend, marketing, finance..." />
+              </div>
+              <div class="input-wrap">
+                <label for="heroCity">Къде?</label>
+                <select id="heroCity">
+                  <option value="">Навсякъде</option>
+                </select>
+              </div>
+              <button class="btn btn-primary btn-search" id="heroSearchBtn">Търси обяви</button>
+            </div>
+
+            <div class="hero-tags">
+              <span>Популярно:</span>
+              <button data-quick-sector="ИТ">ИТ</button>
+              <button data-quick-sector="Маркетинг">Маркетинг</button>
+              <button data-quick-type="Стаж">Стажове</button>
+              <button data-quick-city="Дистанционно">Remote</button>
+            </div>
+          </div>
+
+          <aside class="hero-panel">
+            <div class="panel-kicker">Актуални възможности</div>
+            <div class="stat-grid">
+              <div class="stat-card">
+                <strong id="statJobs">0</strong>
+                <span>активни обяви</span>
+              </div>
+              <div class="stat-card">
+                <strong id="statCompanies">0</strong>
+                <span>компании</span>
+              </div>
+              <div class="stat-card">
+                <strong id="statRemote">0</strong>
+                <span>remote позиции</span>
+              </div>
+              <div class="stat-card">
+                <strong id="statInternships">0</strong>
+                <span>стажове</span>
+              </div>
+            </div>
+            <div class="mini-list" id="heroLatestJobs"></div>
+          </aside>
+        </section>
+
+        <section class="section compact-section">
+          <div class="section-head">
+            <div>
+              <span class="section-kicker">Най-новото</span>
+              <h2>Последно добавени позиции</h2>
+            </div>
+            <button class="text-button" data-go-view="jobs">Виж всички →</button>
+          </div>
+          <div class="job-grid" id="homeJobGrid"></div>
+        </section>
+
+        <section class="info-strip">
+          <article>
+            <span class="step">01</span>
+            <h3>Филтрираш</h3>
+            <p>Избираш град, тип позиция и сектор.</p>
+          </article>
+          <article>
+            <span class="step">02</span>
+            <h3>Сравняваш</h3>
+            <p>Виждаш само entry-level позиции на едно място.</p>
+          </article>
+          <article>
+            <span class="step">03</span>
+            <h3>Кандидатстваш</h3>
+            <p>Отваряш директно страницата или имейла на компанията.</p>
+          </article>
+        </section>
+
+        <section class="cta-panel">
+          <div>
+            <span class="section-kicker light">За компании</span>
+            <h2>Търсиш стажанти или junior кандидати?</h2>
+            <p>Добави позицията си безплатно в MVP версията на JuniorStart BG.</p>
+          </div>
+          <button class="btn btn-light" id="openAddJobHero">Добави обява</button>
+        </section>
+      </section>
+
+      <section class="view" id="view-jobs">
+        <section class="page-heading">
+          <div>
+            <span class="section-kicker">Борса за начинаещи</span>
+            <h1>Стажове и junior позиции</h1>
+            <p>Филтрирай само това, което е релевантно за първа стъпка в кариерата ти.</p>
+          </div>
+          <button class="btn btn-primary" id="openAddJobJobs">+ Добави обява</button>
+        </section>
+
+        <section class="jobs-layout">
+          <aside class="filters-card">
+            <div class="filter-title-row">
+              <h3>Филтри</h3>
+              <button class="text-button subtle" id="clearFilters">Изчисти</button>
+            </div>
+
+            <label>
+              Търсене
+              <input id="searchInput" type="search" placeholder="Длъжност или компания" />
+            </label>
+
+            <label>
+              Град
+              <select id="cityFilter">
+                <option value="">Всички градове</option>
+              </select>
+            </label>
+
+            <label>
+              Тип
+              <select id="typeFilter">
+                <option value="">Всички типове</option>
+              </select>
+            </label>
+
+            <label>
+              Сектор
+              <select id="sectorFilter">
+                <option value="">Всички сектори</option>
+              </select>
+            </label>
+
+            <label>
+              Подреди
+              <select id="sortFilter">
+                <option value="newest">Най-нови</option>
+                <option value="oldest">Най-стари</option>
+                <option value="company">По компания</option>
+              </select>
+            </label>
+          </aside>
+
+          <div class="jobs-content">
+            <div class="results-bar">
+              <div><strong id="resultsCount">0</strong> намерени обяви</div>
+              <div class="active-filters" id="activeFilters"></div>
+            </div>
+            <div class="job-list" id="jobsList"></div>
+            <div class="empty-state hidden" id="jobsEmpty">
+              <div class="empty-icon">⌕</div>
+              <h3>Няма намерени обяви</h3>
+              <p>Промени някой от филтрите или изчисти търсенето.</p>
+              <button class="btn btn-secondary" id="emptyClearFilters">Изчисти филтрите</button>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="view" id="view-companies">
+        <section class="page-heading">
+          <div>
+            <span class="section-kicker">Работодатели</span>
+            <h1>Компании с entry-level позиции</h1>
+            <p>Компании, които присъстват с активни стажове или junior обяви.</p>
+          </div>
+        </section>
+        <div class="company-grid" id="companyGrid"></div>
+      </section>
+
+      <section class="view" id="view-saved">
+        <section class="page-heading">
+          <div>
+            <span class="section-kicker">Твоят shortlist</span>
+            <h1>Запазени обяви</h1>
+            <p>Съхраняват се локално в браузъра ти на това устройство.</p>
+          </div>
+        </section>
+        <div class="job-list" id="savedJobsList"></div>
+        <div class="empty-state hidden" id="savedEmpty">
+          <div class="empty-icon">♡</div>
+          <h3>Нямаш запазени обяви</h3>
+          <p>Натисни иконата със сърце на обява, за да я запазиш тук.</p>
+          <button class="btn btn-secondary" data-go-view="jobs">Разгледай обявите</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <a class="brand footer-brand" href="#home">
+          <span class="brand-mark">J</span>
+          <span><strong>JuniorStart</strong><small>BG</small></span>
+        </a>
+        <p>Стажове, junior позиции и студентски практики в България.</p>
+      </div>
+      <div class="footer-links">
+        <button data-go-view="jobs">Обяви</button>
+        <button data-go-view="companies">Компании</button>
+        <button id="footerAddJob">Добави обява</button>
+      </div>
+      <div class="footer-note">
+        <span>© <span id="year"></span> JuniorStart BG</span>
+        <span>MVP версия</span>
+      </div>
+    </footer>
+  </div>
+
+  <div class="modal-backdrop hidden" id="jobModal">
+    <div class="modal job-modal" role="dialog" aria-modal="true" aria-labelledby="jobModalTitle">
+      <button class="modal-close" data-close-modal="jobModal" aria-label="Затвори">×</button>
+      <div id="jobModalContent"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="addJobModal">
+    <div class="modal form-modal" role="dialog" aria-modal="true" aria-labelledby="addJobTitle">
+      <button class="modal-close" data-close-modal="addJobModal" aria-label="Затвори">×</button>
+      <div class="modal-head">
+        <span class="section-kicker">За работодатели</span>
+        <h2 id="addJobTitle">Добави обява</h2>
+        <p>Обявата ще бъде изпратена за преглед. След одобрение от администратор ще се появи публично в JuniorStart BG.</p>
+      </div>
+
+      <form id="addJobForm" class="job-form">
+        <div class="form-grid">
+          <label>
+            Заглавие *
+            <input name="title" required placeholder="напр. Junior QA Engineer" />
+          </label>
+          <label>
+            Компания *
+            <input name="company" required placeholder="Име на фирмата" />
+          </label>
+          <label>
+            Град *
+            <select name="city" required>
+              <option value="">Избери</option>
+              <option>София</option>
+              <option>Пловдив</option>
+              <option>Варна</option>
+              <option>Бургас</option>
+              <option>Русе</option>
+              <option>Плевен</option>
+              <option>Дистанционно</option>
+            </select>
+          </label>
+          <label>
+            Тип *
+            <select name="type" required>
+              <option value="">Избери</option>
+              <option>Стаж</option>
+              <option>Junior</option>
+              <option>Практика</option>
+            </select>
+          </label>
+          <label>
+            Сектор *
+            <select name="sector" required>
+              <option value="">Избери</option>
+              <option>ИТ</option>
+              <option>Дизайн</option>
+              <option>Маркетинг</option>
+              <option>Финанси</option>
+              <option>Продажби</option>
+              <option>Инженерство</option>
+              <option>Администрация</option>
+              <option>Друг</option>
+            </select>
+          </label>
+          <label>
+            Линк за кандидатстване *
+            <input name="applyUrl" required placeholder="https://..." />
+          </label>
+        </div>
+
+        <label>
+          Кратко описание *
+          <textarea name="description" required rows="6" placeholder="Опиши позицията, какво ще прави кандидатът и какво очаквате..."></textarea>
+        </label>
+
+        <label>
+          Изисквания
+          <textarea name="requirements" rows="4" placeholder="напр. основи на JavaScript, английски B2, желание за учене..."></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" data-close-modal="addJobModal">Отказ</button>
+          <button type="submit" class="btn btn-primary">Изпрати за одобрение</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

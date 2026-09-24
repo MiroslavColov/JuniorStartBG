@@ -1,0 +1,9 @@
+{
+  "name": "juniorstart-bg",
+  "version": "1.0.0",
+  "private": true,
+  "description": "JuniorStart BG - стажове и junior позиции в България",
+  "scripts": {
+    "build": "node build.js"
+  }
+}
